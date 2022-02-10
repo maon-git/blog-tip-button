@@ -1,0 +1,179 @@
+<span class="prof">
+
+<!-- jquery必須 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" --></script>
+
+<select id="selectpay">
+  <option value="select">支援先を選択してください</option>
+  <option value="amazon">Amazonギフト券を送ってみる</option>
+  <option value="ofuse">Ofuseで投げ銭をする</option>
+  <option value="yggdore">ユグドアでチップをスローする</option>
+  <option value="paypalme">Paypal Meで支援</option>
+  <option value="tippinme">Tippin' Meで支援 (BTC)</option>
+  <option value="moneybutton">Money Buttonで支援 (BSV)</option>
+  <option value="metamask">Metamaskで支援 (ETH)</option>
+  <option value="coinbase">Coinbaseで支援 (BTC/ETH/LTC)</option>
+</select>
+
+<br><br>
+
+<img id="defaultimg" src="デフォルトで表示する画像">
+
+<section id="amazon">
+<a href="アマギフメールタイプのURL" target="_blank">
+<img class="sideimg" border="0" src="アマギフ用の画像" ></a>
+
+<br>※受取用のアドレスは↓こちら↓<br>
+<button id="data">メールアドレスを表示する</button>
+
+<div id="getaddress">
+<div id="maildisplay"></div>
+<button class="copybutton" data-clipboard-target="#maildisplay">Copy</button>
+</div>
+
+<!-- ドメイン直下にメールアドレスを記載したtxtを置いておく -->
+<script type="text/javascript">
+$('button#data').click(function(){
+	if( $('#maildisplay').is(':empty') ) {
+		$.get('https://hogehoge/fugafuga.txt', function(data) {
+			str = data;
+			arr = str.split(',');
+			function safeEval(val){
+				return Function('"use strict";return ('+val+')')();
+			};
+			for(var i =0; i<arr.length; i++){
+				document.getElementById('maildisplay').innerHTML += String.fromCharCode(safeEval(arr[i]));  
+			};
+		});
+	};
+//txtアクセス不能時の代替処理
+function spareAdd(){
+	if( $('#maildisplay').is(':empty') ) {
+
+//タイムラグでアドレス二重表示を防止するなら
+// $("#maildisplay").empty();
+
+//ここから表示処理
+//charCodeAtしたものをfugafugaに入れる
+//例えばfoo@bar.comなら→102,111,111,64,98,97,114,46,99,111,109
+			var ma = String.fromCharCode(fugafuga);
+			$('#maildisplay').html(ma); 
+		};
+	};
+setTimeout(spareAdd, 1000);
+});
+</script>
+
+<!-- クリップボ―ドjsを読み込む -->
+<script src="https://cdn.jsdelivr.net/clipboard.js/1.5.13/clipboard.min.js"></script>
+<script>
+  $(function () {
+    var clipboard = new Clipboard('.copybutton');
+
+//表示されたアドレスのコピーボタン
+jQuery('.copybutton').click(function(){
+    jQuery(this)
+      .css('background-color','#F8A3C0') // ボタンの色（押した後）
+      .css('font-weight','bold') // 文字の太さ切り替え
+      .css('cursor','default') // カーソル切り替え
+      .text('Done'); // テキスト切り替え
+  });
+  });
+</script>
+</section>
+
+<section id="ofuse">
+<a href="ofuseのユーザーURL" target="_blank"><img class="sideimg" src="ofuse用の画像" alt="ofuse" style="width: 160px; height: 55px;"></a>
+</section>
+
+<section id="yggdore">
+<!-- URL末尾の数字が初期入力の金額(円) -->
+<a href="https://www.yggdore.com/t4u/150/" target="_blank"><img class="sideimg" src="ユグドア用の画像" alt="yggdore" style="width: 200px; height: 40px;"></a>
+</section>
+
+<section id="paypalme">
+<a href="https://www.paypal.me/ペイパルmeのユーザーID/150jpy" target="_blank"><img class="sideimg" src="ペイパルme用の画像" alt="Paypal Meで支援する"></a>
+</section>
+
+<section id="tippinme">
+<!-- Beginning of tippin.me Button --> <div id="tippin-button" data-dest="tippinmeのユーザーID" style="background:#26282F"></div> <script src="https://tippin.me/buttons/tip.js" type="text/javascript"></script> <!-- End of tippin.me Button -->
+</section>
+
+<section id="moneybutton">
+<!-- This line should go where you want to put your button -->
+<!-- 公式サイトからmoneybuttonを作ってコードを貼る -->
+<!-- This line can go anywhere -->
+<script src="https://www.moneybutton.com/moneybutton.js"></script>
+</section>
+
+<!-- スマホかPCにメタマスクなどが入ってる人向け -->
+<!-- 2020年辺りまでは下記コードで問題無かったが今は動くか不明。要確認 -->
+<section id="metamask">
+<div id="status"></div>
+<button class="pay-button"><span class="tip-button"></span></button><br>
+※PC拡張機能またはDappsブラウザ上で<b>接続許可</b>が必要です
+
+<script type="text/javascript">
+var tipButton = document.querySelector('.pay-button');
+
+tipButton.addEventListener('click', async () => {
+      if (window.ethereum) {
+        window.web3 = new Web3(ethereum);
+        try {
+          await ethereum.enable();
+          initPayButton()
+        } catch (err) {
+	    // User denied account access...
+	    $('#status').html('User denied account access. Retry the payment button', err)
+        }
+      } else if (window.web3) {
+        window.web3 = new Web3(web3.currentProvider)
+        initPayButton()
+      } else {
+        $('#status').html('No Metamask (or other Web3 Provider) installed. Send ETH \"イーサウォレットアドレス\"')
+      }
+    })
+
+const initPayButton = () => {
+        // paymentAddress is where funds will be send to
+        const paymentAddress = 'イーサウォレットアドレス'
+        const amountEth = '0.01'
+
+        web3.eth.sendTransaction({
+          to: paymentAddress,
+          value: web3.toWei(amountEth, 'ether')
+        }, (err, transactionId) => {
+          if (err) {
+            console.log('Payment failed', err)
+            $('#status').html('Payment failed')
+          } else {
+            console.log('Payment successful', transactionId)
+            $('#status').html('Payment successful')
+          }
+        })
+    }
+</script>
+</section>
+
+<section id="coinbase">
+<div>
+  <a class="donate-with-crypto" href="https://commerce.coinbase.com/checkout/coinbaseコマースのユーザー識別子">
+    Donate with Crypto
+  </a>
+  <script src="https://commerce.coinbase.com/v1/checkout.js?version=201807">
+  </script>
+</div>
+</section>
+
+</span>
+
+<!-- チップボタンリストの表示切替操作用 -->
+<script type="text/javascript">
+$('#selectpay').change(function () {
+var val = $('#selectpay option:selected').val();
+if (val == 'select') return;
+$('#defaultimg').css("display", "none");
+$('.prof section').fadeOut();
+$('.prof section#' + val ).fadeIn();
+});
+</script>
