@@ -10,7 +10,7 @@ This is a throwback button. You can place it on your website to receive Amazon g
 
 ■アマギフの部分
 
-アマギフを送るなら、メアド等をユーザ側が知っていないとダメなわけだが、さすがにサイト上にそのまま載せたくない。さらにユーザがどこかからコピペする手間も省きたい。
+アマギフを送るなら、メアド等をユーザ側が知っていないとダメなわけだが、さすがにサイト上にそのまま載せたくない、さらにユーザがどこかからコピペする手間も省きたい。
 
 ということで、表示ボタンとコピーボタンを実装。
 
@@ -20,7 +20,7 @@ This is a throwback button. You can place it on your website to receive Amazon g
 
 →そこからメアドが無事取得できれば表示。
 
-→もし何らかの理由でメアド欄が空のままなら、コード内にcharCodeAtしておいたメアドをfromCharCodeして表示。
+→もし何らかの理由でメアド欄が空のままなら、予めcharCodeAtしておいたメアドの数値をfromCharCodeして表示。
 
 そもそもドメイン直下に生メアドを記載しておくのはどうなんだ問題があるが、charCodeAtしたところで記事ページ内だとボットに読まれそうなので。
 
@@ -48,29 +48,29 @@ This is a throwback button. You can place it on your website to receive Amazon g
 
 通常のpaypalアカウントとはまた別。
 
-https://www.paypal.me/
+`https://www.paypal.me/`
 
 ・tippin.me
 
 ツイッター連携で暗号資産BTC用の投げ銭。
 
-https://tippin.me/
+`https://tippin.me/`
 
 ・moneybutton
 
 BTCやBSV、BATなど暗号資産の投げ銭。現状26種。
 
-https://www.moneybutton.com/
+`https://www.moneybutton.com/`
 
 ・coinbaseコマース
 
 コインベースの暗号資産オンライン決済ツール
 
-https://commerce.coinbase.com/
+`https://commerce.coinbase.com/`
 
 ■参考：
 
-暗号資産チップボタンは作成できるが、kycがやや面倒。
+下記サービスも暗号資産チップボタンは作成できるが、kycがやや面倒。
 
 2020年辺りからちょい厳しくなった。
 
@@ -80,8 +80,8 @@ bitpayは普通に使えていたが、身分証の申請が必須になって�
 
 ・ビットペイ
 
-https://bitpay.com/
+`https://bitpay.com/`
 
 ・コインゲート
 
-https://coingate.com/
+`https://coingate.com/`
