@@ -2,20 +2,19 @@
 
 /* チップボタンリスト用 */
 .prof section{
-display:none;
+display: none;
 }
 
 /* tippin.me用 */
-tippin-button
 #tippin-button{
-display:block;
-width:200px;
+display: block;
+width: 200px;
 }
 
 /* メアド表示案内部用 */
 #amazon #data{
-display:block;
-width:180px;
+display: block;
+width: 180px;
 }
 
 /* メアド表示パーツ用 */
@@ -35,7 +34,7 @@ box-sizing: border-box;
 
 /* メアド表示窓用 */
 #maildisplay{
-font-size:80%;
+font-size: 80%;
 line-height: 1.6;
 margin: 0;
 border: 0;
@@ -51,7 +50,7 @@ box-sizing: border-box;
 
 /* メアドコピーボタン用 */
 .copybutton{
-font-size:80%;
+font-size: 80%;
 float: right;
 width: 45px;
 height: 30px;
@@ -61,27 +60,26 @@ box-sizing: border-box;
 
 /* チップボタン全般画像用 */
 .sideimg{
- border: 1px solid #B3B3B3;
- border-radius: 6px;
+border: 1px solid #B3B3B3;
+border-radius: 6px;
 }
-.sideimg:hover {
-    position:relative;
-    left: 1px;
+.sideimg:hover{
+position: relative;
+left: 1px;
 }
 
 /* metamaskのボタン用 */
-pay-button
-.pay-button {
-display:inline-block;
-    width: 160px;
-    padding:0;
-    margin:0;
-background:none;
-    border:0;
-    font-size:0;
-    line-height:0;
-    overflow:visible;
-    cursor:pointer;
+.pay-button{
+display: inline-block;
+width: 160px;
+padding: 0;
+margin: 0;
+background: none;
+border: 0;
+font-size: 0;
+line-height: 0;
+overflow: visible;
+cursor: pointer;
 -webkit-appearance: none;
 appearance: none;
 }
@@ -89,15 +87,15 @@ appearance: none;
 /* metamaskのボタン画像用 */
 .tip-button{
 display:inline-block;
-width:160px;
-height:47px;
-background-image:url('ボタン画像');
+width: 160px;
+height: 47px;
+background-image: url('ボタン画像');
 }
 
 /* 起動に時間かかりがちなので動きを付けておいた方がいい */
-.tip-button:hover {
-  background-image: url('ボタン画像');
+.tip-button:hover{
+background-image: url('ボタン画像');
 }
-.tip-button:active {
-  background-image: url('ボタン画像');
- }
+.tip-button:active{
+background-image: url('ボタン画像');
+}
